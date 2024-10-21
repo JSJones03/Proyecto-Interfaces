@@ -15,6 +15,82 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
      */
     public VentaDeOrdenadores() {
         initComponents();
+        deshabilitaBotones();
+    }
+
+    private void deshabilitaBotones() {
+        boxLocalidad.setEnabled(false);
+        deshabilitaProcesador();
+        deshabilitaMemoria();
+        deshabilitaMonitor();
+        deshabilitaDisco();
+        deshabilitaOpciones();   
+    }
+
+    private void deshabilitaProcesador() {
+        procesador1.setEnabled(false);
+        procesador2.setEnabled(false);
+        procesador3.setEnabled(false);
+        procesador4.setEnabled(false);
+    }
+    
+        private void habilitaProcesador() {
+        procesador1.setEnabled(true);
+        procesador2.setEnabled(true);
+        procesador3.setEnabled(true);
+        procesador4.setEnabled(true);
+    }
+
+    private void deshabilitaMemoria() {
+        memoria1.setEnabled(false);
+        memoria2.setEnabled(false);
+        memoria3.setEnabled(false);
+        memoria4.setEnabled(false);
+    }
+    private void habilitaMemoria() {
+        memoria1.setEnabled(true);
+        memoria2.setEnabled(true);
+        memoria3.setEnabled(true);
+        memoria4.setEnabled(true);
+    }    
+
+    private void deshabilitaMonitor() {
+        monitor1.setEnabled(false);
+        monitor2.setEnabled(false);
+        monitor3.setEnabled(false);
+        monitor4.setEnabled(false);
+    }
+        private void habilitaMonitor() {
+        monitor1.setEnabled(true);
+        monitor2.setEnabled(true);
+        monitor3.setEnabled(true);
+        monitor4.setEnabled(true);
+    }
+
+    private void deshabilitaDisco() {
+        discoDuro1.setEnabled(false);
+        discoDuro2.setEnabled(false);
+        discoDuro3.setEnabled(false);
+        discoDuro4.setEnabled(false);
+    }
+    private void habilitaDisco() {
+        discoDuro1.setEnabled(true);
+        discoDuro2.setEnabled(true);
+        discoDuro3.setEnabled(true);
+        discoDuro4.setEnabled(true);
+    }
+
+    private void deshabilitaOpciones() {
+        opcion1.setEnabled(false);
+        opcion2.setEnabled(false);
+        opcion3.setEnabled(false);
+        opcion4.setEnabled(false);
+    }
+    private void habilitaOpciones() {
+        opcion1.setEnabled(true);
+        opcion2.setEnabled(true);
+        opcion3.setEnabled(true);
+        opcion4.setEnabled(true);
     }
 
     /**
@@ -34,7 +110,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxLocalidad = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -43,26 +119,26 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
-        jRadioButton13 = new javax.swing.JRadioButton();
-        jRadioButton14 = new javax.swing.JRadioButton();
-        jRadioButton15 = new javax.swing.JRadioButton();
-        jRadioButton16 = new javax.swing.JRadioButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        procesador1 = new javax.swing.JRadioButton();
+        procesador2 = new javax.swing.JRadioButton();
+        procesador3 = new javax.swing.JRadioButton();
+        procesador4 = new javax.swing.JRadioButton();
+        memoria1 = new javax.swing.JRadioButton();
+        memoria2 = new javax.swing.JRadioButton();
+        memoria3 = new javax.swing.JRadioButton();
+        memoria4 = new javax.swing.JRadioButton();
+        monitor1 = new javax.swing.JRadioButton();
+        monitor2 = new javax.swing.JRadioButton();
+        monitor3 = new javax.swing.JRadioButton();
+        monitor4 = new javax.swing.JRadioButton();
+        discoDuro3 = new javax.swing.JRadioButton();
+        discoDuro4 = new javax.swing.JRadioButton();
+        discoDuro1 = new javax.swing.JRadioButton();
+        discoDuro2 = new javax.swing.JRadioButton();
+        opcion1 = new javax.swing.JCheckBox();
+        opcion2 = new javax.swing.JCheckBox();
+        opcion3 = new javax.swing.JCheckBox();
+        opcion4 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -79,9 +155,19 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
         jLabel4.setText("Procesador");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxLocalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxLocalidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxLocalidadActionPerformed(evt);
+            }
+        });
 
         jTextField1.setPreferredSize(new java.awt.Dimension(120, 22));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Memoria");
 
@@ -93,149 +179,149 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
         jLabel9.setText("Opciones");
 
-        GrupoProcesador.add(jRadioButton1);
-        jRadioButton1.setText("P4 3.0 Gb");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        GrupoProcesador.add(procesador1);
+        procesador1.setText("P4 3.0 Gb");
+        procesador1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                procesador1ActionPerformed(evt);
             }
         });
 
-        GrupoProcesador.add(jRadioButton2);
-        jRadioButton2.setText("P4 3.2 Gb");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        GrupoProcesador.add(procesador2);
+        procesador2.setText("P4 3.2 Gb");
+        procesador2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                procesador2ActionPerformed(evt);
             }
         });
 
-        GrupoProcesador.add(jRadioButton3);
-        jRadioButton3.setText("P4 Celeron");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        GrupoProcesador.add(procesador3);
+        procesador3.setText("P4 Celeron");
+        procesador3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                procesador3ActionPerformed(evt);
             }
         });
 
-        GrupoProcesador.add(jRadioButton4);
-        jRadioButton4.setText("AMD 650");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        GrupoProcesador.add(procesador4);
+        procesador4.setText("AMD 650");
+        procesador4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                procesador4ActionPerformed(evt);
             }
         });
 
-        GrupoMemoria.add(jRadioButton5);
-        jRadioButton5.setText("128 Mb");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMemoria.add(memoria1);
+        memoria1.setText("128 Mb");
+        memoria1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                memoria1ActionPerformed(evt);
             }
         });
 
-        GrupoMemoria.add(jRadioButton6);
-        jRadioButton6.setText("256 Mb");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMemoria.add(memoria2);
+        memoria2.setText("256 Mb");
+        memoria2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                memoria2ActionPerformed(evt);
             }
         });
 
-        GrupoMemoria.add(jRadioButton7);
-        jRadioButton7.setText("512 Mb");
-        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMemoria.add(memoria3);
+        memoria3.setText("512 Mb");
+        memoria3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton7ActionPerformed(evt);
+                memoria3ActionPerformed(evt);
             }
         });
 
-        GrupoMemoria.add(jRadioButton8);
-        jRadioButton8.setText("1024 Mb");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMemoria.add(memoria4);
+        memoria4.setText("1024 Mb");
+        memoria4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
+                memoria4ActionPerformed(evt);
             }
         });
 
-        GrupoMonitor.add(jRadioButton9);
-        jRadioButton9.setText("15º");
-        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMonitor.add(monitor1);
+        monitor1.setText("15º");
+        monitor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton9ActionPerformed(evt);
+                monitor1ActionPerformed(evt);
             }
         });
 
-        GrupoMonitor.add(jRadioButton10);
-        jRadioButton10.setText("17º");
-        jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMonitor.add(monitor2);
+        monitor2.setText("17º");
+        monitor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton10ActionPerformed(evt);
+                monitor2ActionPerformed(evt);
             }
         });
 
-        GrupoMonitor.add(jRadioButton11);
-        jRadioButton11.setText("TFT 15\"");
-        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMonitor.add(monitor3);
+        monitor3.setText("TFT 15\"");
+        monitor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton11ActionPerformed(evt);
+                monitor3ActionPerformed(evt);
             }
         });
 
-        GrupoMonitor.add(jRadioButton12);
-        jRadioButton12.setText("TFT 17\"");
-        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+        GrupoMonitor.add(monitor4);
+        monitor4.setText("TFT 17\"");
+        monitor4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton12ActionPerformed(evt);
+                monitor4ActionPerformed(evt);
             }
         });
 
-        GrupoDiscoDuro.add(jRadioButton13);
-        jRadioButton13.setText("120 Gb");
-        jRadioButton13.addActionListener(new java.awt.event.ActionListener() {
+        GrupoDiscoDuro.add(discoDuro3);
+        discoDuro3.setText("120 Gb");
+        discoDuro3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton13ActionPerformed(evt);
+                discoDuro3ActionPerformed(evt);
             }
         });
 
-        GrupoDiscoDuro.add(jRadioButton14);
-        jRadioButton14.setText("200 Gb");
-        jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
+        GrupoDiscoDuro.add(discoDuro4);
+        discoDuro4.setText("200 Gb");
+        discoDuro4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton14ActionPerformed(evt);
+                discoDuro4ActionPerformed(evt);
             }
         });
 
-        GrupoDiscoDuro.add(jRadioButton15);
-        jRadioButton15.setText("16 Gb");
-        jRadioButton15.addActionListener(new java.awt.event.ActionListener() {
+        GrupoDiscoDuro.add(discoDuro1);
+        discoDuro1.setText("16 Gb");
+        discoDuro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton15ActionPerformed(evt);
+                discoDuro1ActionPerformed(evt);
             }
         });
 
-        GrupoDiscoDuro.add(jRadioButton16);
-        jRadioButton16.setText("80 Gb");
-        jRadioButton16.addActionListener(new java.awt.event.ActionListener() {
+        GrupoDiscoDuro.add(discoDuro2);
+        discoDuro2.setText("80 Gb");
+        discoDuro2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton16ActionPerformed(evt);
+                discoDuro2ActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("Grabadora DVD");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        opcion1.setText("Grabadora DVD");
+        opcion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                opcion1ActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Wifi");
+        opcion2.setText("Wifi");
 
-        jCheckBox3.setText("Sintonizador TV");
+        opcion3.setText("Sintonizador TV");
 
-        jCheckBox4.setText("Backup/Restore");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        opcion4.setText("Backup/Restore");
+        opcion4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                opcion4ActionPerformed(evt);
             }
         });
 
@@ -281,7 +367,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(165, 165, 165)
                         .addComponent(jLabel6)
@@ -291,36 +377,36 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(232, 232, 232)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton12)
-                                    .addComponent(jRadioButton11)
-                                    .addComponent(jRadioButton10)
-                                    .addComponent(jRadioButton9)
+                                    .addComponent(monitor4)
+                                    .addComponent(monitor3)
+                                    .addComponent(monitor2)
+                                    .addComponent(monitor1)
                                     .addComponent(jLabel7))
                                 .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(jRadioButton14)
-                                    .addComponent(jRadioButton13)
-                                    .addComponent(jRadioButton16)
-                                    .addComponent(jRadioButton15)))
+                                    .addComponent(discoDuro4)
+                                    .addComponent(discoDuro3)
+                                    .addComponent(discoDuro2)
+                                    .addComponent(discoDuro1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton1)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
-                                        .addComponent(jRadioButton4)
-                                        .addComponent(jRadioButton3)
-                                        .addComponent(jRadioButton2)
-                                        .addComponent(jRadioButton1)))
+                                        .addComponent(procesador4)
+                                        .addComponent(procesador3)
+                                        .addComponent(procesador2)
+                                        .addComponent(procesador1)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(43, 43, 43)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
-                                            .addComponent(jRadioButton8)
-                                            .addComponent(jRadioButton7)
-                                            .addComponent(jRadioButton6)
-                                            .addComponent(jRadioButton5)))
+                                            .addComponent(memoria4)
+                                            .addComponent(memoria3)
+                                            .addComponent(memoria2)
+                                            .addComponent(memoria1)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton2)
@@ -331,10 +417,10 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                                 .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(jCheckBox4)))
+                                    .addComponent(opcion1)
+                                    .addComponent(opcion2)
+                                    .addComponent(opcion3)
+                                    .addComponent(opcion4)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -354,7 +440,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(boxLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(60, 60, 60)
@@ -371,47 +457,47 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(procesador1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
+                                .addComponent(procesador2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton3)
+                                .addComponent(procesador3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton4))
+                                .addComponent(procesador4))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton5)
+                                .addComponent(memoria1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton6)
+                                .addComponent(memoria2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton7)
+                                .addComponent(memoria3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton8))
+                                .addComponent(memoria4))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton15)
-                                    .addComponent(jCheckBox1))
+                                    .addComponent(discoDuro1)
+                                    .addComponent(opcion1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton16)
-                                    .addComponent(jCheckBox2))
+                                    .addComponent(discoDuro2)
+                                    .addComponent(opcion2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton13)
-                                    .addComponent(jCheckBox3))
+                                    .addComponent(discoDuro3)
+                                    .addComponent(opcion3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton14)
-                                    .addComponent(jCheckBox4)))))
+                                    .addComponent(discoDuro4)
+                                    .addComponent(opcion4)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton9)
+                        .addComponent(monitor1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton10)
+                        .addComponent(monitor2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton11)
+                        .addComponent(monitor3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton12)))
+                        .addComponent(monitor4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -430,77 +516,77 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void procesador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesador1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_procesador1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void procesador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesador2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_procesador2ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void procesador3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesador3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_procesador3ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void procesador4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesador4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_procesador4ActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void memoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memoria1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_memoria1ActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void memoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memoria2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_memoria2ActionPerformed
 
-    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+    private void memoria3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memoria3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton7ActionPerformed
+    }//GEN-LAST:event_memoria3ActionPerformed
 
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+    private void memoria4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memoria4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
+    }//GEN-LAST:event_memoria4ActionPerformed
 
-    private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
+    private void monitor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monitor1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton9ActionPerformed
+    }//GEN-LAST:event_monitor1ActionPerformed
 
-    private void jRadioButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10ActionPerformed
+    private void monitor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monitor2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton10ActionPerformed
+    }//GEN-LAST:event_monitor2ActionPerformed
 
-    private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
+    private void monitor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monitor3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton11ActionPerformed
+    }//GEN-LAST:event_monitor3ActionPerformed
 
-    private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
+    private void monitor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monitor4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton12ActionPerformed
+    }//GEN-LAST:event_monitor4ActionPerformed
 
-    private void jRadioButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton13ActionPerformed
+    private void discoDuro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discoDuro3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton13ActionPerformed
+    }//GEN-LAST:event_discoDuro3ActionPerformed
 
-    private void jRadioButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton14ActionPerformed
+    private void discoDuro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discoDuro4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton14ActionPerformed
+    }//GEN-LAST:event_discoDuro4ActionPerformed
 
-    private void jRadioButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton15ActionPerformed
+    private void discoDuro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discoDuro1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton15ActionPerformed
+    }//GEN-LAST:event_discoDuro1ActionPerformed
 
-    private void jRadioButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton16ActionPerformed
+    private void discoDuro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discoDuro2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton16ActionPerformed
+    }//GEN-LAST:event_discoDuro2ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void opcion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_opcion1ActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void opcion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_opcion4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -513,6 +599,14 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void boxLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLocalidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxLocalidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -545,6 +639,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentaDeOrdenadores().setVisible(true);
+
             }
         });
     }
@@ -554,16 +649,16 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.ButtonGroup GrupoMemoria;
     private javax.swing.ButtonGroup GrupoMonitor;
     private javax.swing.ButtonGroup GrupoProcesador;
+    private javax.swing.JComboBox<String> boxLocalidad;
+    private javax.swing.JRadioButton discoDuro1;
+    private javax.swing.JRadioButton discoDuro2;
+    private javax.swing.JRadioButton discoDuro3;
+    private javax.swing.JRadioButton discoDuro4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -574,23 +669,23 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton14;
-    private javax.swing.JRadioButton jRadioButton15;
-    private javax.swing.JRadioButton jRadioButton16;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton memoria1;
+    private javax.swing.JRadioButton memoria2;
+    private javax.swing.JRadioButton memoria3;
+    private javax.swing.JRadioButton memoria4;
+    private javax.swing.JRadioButton monitor1;
+    private javax.swing.JRadioButton monitor2;
+    private javax.swing.JRadioButton monitor3;
+    private javax.swing.JRadioButton monitor4;
+    private javax.swing.JCheckBox opcion1;
+    private javax.swing.JCheckBox opcion2;
+    private javax.swing.JCheckBox opcion3;
+    private javax.swing.JCheckBox opcion4;
+    private javax.swing.JRadioButton procesador1;
+    private javax.swing.JRadioButton procesador2;
+    private javax.swing.JRadioButton procesador3;
+    private javax.swing.JRadioButton procesador4;
     // End of variables declaration//GEN-END:variables
 }
