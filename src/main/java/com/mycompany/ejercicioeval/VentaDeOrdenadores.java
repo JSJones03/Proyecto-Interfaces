@@ -4,6 +4,9 @@
  */
 package com.mycompany.ejercicioeval;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author alumno
@@ -16,15 +19,40 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     public VentaDeOrdenadores() {
         initComponents();
         deshabilitaBotones();
+
+        textNombre.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    habilitaBotones();
+                }
+                configuracionStandar();
+                bAñadir.setEnabled(true);
+                bBuscar.setEnabled(true);
+            }
+        });
     }
 
+    private void habilitaBotones() {
+        boxLocalidad.setEnabled(true);
+        habilitaProcesador();
+        habilitaMemoria();
+        habilitaMonitor();
+        habilitaDisco();
+        habilitaOpciones();
+    }
+
+    
     private void deshabilitaBotones() {
         boxLocalidad.setEnabled(false);
         deshabilitaProcesador();
         deshabilitaMemoria();
         deshabilitaMonitor();
         deshabilitaDisco();
-        deshabilitaOpciones();   
+        deshabilitaOpciones();
+        bAñadir.setEnabled(false);
+        bBuscar.setEnabled(false);
+        bEliminar.setEnabled(false);
     }
 
     private void deshabilitaProcesador() {
@@ -33,8 +61,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         procesador3.setEnabled(false);
         procesador4.setEnabled(false);
     }
-    
-        private void habilitaProcesador() {
+
+    private void habilitaProcesador() {
         procesador1.setEnabled(true);
         procesador2.setEnabled(true);
         procesador3.setEnabled(true);
@@ -47,12 +75,13 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         memoria3.setEnabled(false);
         memoria4.setEnabled(false);
     }
+
     private void habilitaMemoria() {
         memoria1.setEnabled(true);
         memoria2.setEnabled(true);
         memoria3.setEnabled(true);
         memoria4.setEnabled(true);
-    }    
+    }
 
     private void deshabilitaMonitor() {
         monitor1.setEnabled(false);
@@ -60,7 +89,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         monitor3.setEnabled(false);
         monitor4.setEnabled(false);
     }
-        private void habilitaMonitor() {
+
+    private void habilitaMonitor() {
         monitor1.setEnabled(true);
         monitor2.setEnabled(true);
         monitor3.setEnabled(true);
@@ -73,6 +103,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         discoDuro3.setEnabled(false);
         discoDuro4.setEnabled(false);
     }
+
     private void habilitaDisco() {
         discoDuro1.setEnabled(true);
         discoDuro2.setEnabled(true);
@@ -86,13 +117,21 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         opcion3.setEnabled(false);
         opcion4.setEnabled(false);
     }
+
     private void habilitaOpciones() {
         opcion1.setEnabled(true);
         opcion2.setEnabled(true);
         opcion3.setEnabled(true);
         opcion4.setEnabled(true);
     }
-
+    private void configuracionStandar(){
+        procesador2.setSelected(true);
+        memoria4.setSelected(true);
+        monitor4.setSelected(true);
+        discoDuro4.setSelected(true);
+        opcion1.setSelected(true);
+        opcion2.setSelected(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,7 +150,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         boxLocalidad = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        textNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -139,9 +178,9 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         opcion2 = new javax.swing.JCheckBox();
         opcion3 = new javax.swing.JCheckBox();
         opcion4 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bAñadir = new javax.swing.JButton();
+        bBuscar = new javax.swing.JButton();
+        bEliminar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -162,10 +201,10 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(120, 22));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textNombre.setPreferredSize(new java.awt.Dimension(120, 22));
+        textNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textNombreActionPerformed(evt);
             }
         });
 
@@ -325,19 +364,24 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Añadir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bAñadir.setText("Añadir");
+        bAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bAñadirActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buscar");
-
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bBuscarActionPerformed(evt);
+            }
+        });
+
+        bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarActionPerformed(evt);
             }
         });
 
@@ -368,7 +412,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(boxLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(165, 165, 165)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18))
@@ -391,7 +435,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                                     .addComponent(discoDuro1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
+                                    .addComponent(bAñadir)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
                                         .addComponent(procesador4)
@@ -409,9 +453,9 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                                             .addComponent(memoria1)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2)
+                                        .addComponent(bBuscar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton3)))))
+                                        .addComponent(bEliminar)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
@@ -436,7 +480,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -502,9 +546,9 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(bAñadir)
+                            .addComponent(bBuscar)
+                            .addComponent(bEliminar))
                         .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4)
@@ -588,25 +632,32 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_opcion4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        deshabilitaBotones();
+    }//GEN-LAST:event_bAñadirActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        deshabilitaBotones();
+    }//GEN-LAST:event_bEliminarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textNombreActionPerformed
 
     private void boxLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLocalidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxLocalidadActionPerformed
+
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        // TODO add your handling code here:
+        deshabilitaBotones();
+    }//GEN-LAST:event_bBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,14 +700,14 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.ButtonGroup GrupoMemoria;
     private javax.swing.ButtonGroup GrupoMonitor;
     private javax.swing.ButtonGroup GrupoProcesador;
+    private javax.swing.JButton bAñadir;
+    private javax.swing.JButton bBuscar;
+    private javax.swing.JButton bEliminar;
     private javax.swing.JComboBox<String> boxLocalidad;
     private javax.swing.JRadioButton discoDuro1;
     private javax.swing.JRadioButton discoDuro2;
     private javax.swing.JRadioButton discoDuro3;
     private javax.swing.JRadioButton discoDuro4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -670,7 +721,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton memoria1;
     private javax.swing.JRadioButton memoria2;
     private javax.swing.JRadioButton memoria3;
@@ -687,5 +737,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JRadioButton procesador2;
     private javax.swing.JRadioButton procesador3;
     private javax.swing.JRadioButton procesador4;
+    private javax.swing.JTextField textNombre;
     // End of variables declaration//GEN-END:variables
 }
