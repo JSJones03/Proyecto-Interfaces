@@ -23,12 +23,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         textNombre.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && !(textNombre.getText().isEmpty())) {
                     habilitaBotones();
+                    configuracionStandar();
+                    bAñadir.setEnabled(true);
+                    bBuscar.setEnabled(true);
                 }
-                configuracionStandar();
-                bAñadir.setEnabled(true);
-                bBuscar.setEnabled(true);
             }
         });
     }
@@ -42,7 +42,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         habilitaOpciones();
     }
 
-    
     private void deshabilitaBotones() {
         boxLocalidad.setEnabled(false);
         deshabilitaProcesador();
@@ -124,7 +123,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         opcion3.setEnabled(true);
         opcion4.setEnabled(true);
     }
-    private void configuracionStandar(){
+
+    private void configuracionStandar() {
         procesador2.setSelected(true);
         memoria4.setSelected(true);
         monitor4.setSelected(true);
@@ -132,6 +132,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         opcion1.setSelected(true);
         opcion2.setSelected(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
