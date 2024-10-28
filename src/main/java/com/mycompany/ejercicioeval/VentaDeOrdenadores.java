@@ -4,8 +4,12 @@
  */
 package com.mycompany.ejercicioeval;
 
+import java.awt.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+import java.util.Vector;
 
 /**
  *
@@ -13,16 +17,21 @@ import java.awt.event.KeyEvent;
  */
 public class VentaDeOrdenadores extends javax.swing.JFrame {
 
+    Vector<String> vector;
+
     /**
      * Creates new form VentaDeOrdenadores
      */
     public VentaDeOrdenadores() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        vector = new Vector<>();
         deshabilitaBotones();
 
         textNombre.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+
                 if (e.getKeyCode() == KeyEvent.VK_ENTER && !(textNombre.getText().isEmpty())) {
                     habilitaBotones();
                     configuracionStandar();
@@ -186,6 +195,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Lista de clientes");
 
@@ -216,6 +226,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         jLabel8.setText("Disco Duro");
 
         jScrollPane2.setViewportView(jList2);
+        jList2.getAccessibleContext().setAccessibleParent(textNombre);
 
         jLabel9.setText("Opciones");
 
@@ -543,19 +554,17 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addComponent(monitor3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(monitor4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bAñadir)
-                            .addComponent(bBuscar)
-                            .addComponent(bEliminar))
-                        .addGap(39, 39, 39))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bAñadir)
+                        .addComponent(bBuscar)
+                        .addComponent(bEliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)))
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -636,6 +645,13 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
+        
+        ArrayList<String> listaOpciones = null;
+         Venta v;
+        v = new Venta(textNombre.getText(),boxLocalidad.toString(),GrupoProcesador.getSelection().toString(),GrupoMemoria.getSelection().toString(), GrupoDiscoDuro.getSelection().toString(), GrupoMonitor.getSelection().toString(), listaOpciones);
+         vector.addElement(v.getNombre());
+         jList2.setListData(vector);
+         jScrollPane2.getViewport().setView(jList2);
     }//GEN-LAST:event_bAñadirActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
@@ -740,4 +756,5 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JRadioButton procesador4;
     private javax.swing.JTextField textNombre;
     // End of variables declaration//GEN-END:variables
+
 }
