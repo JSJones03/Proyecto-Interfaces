@@ -6,23 +6,22 @@ package com.mycompany.ejercicioeval;
 
 
 import java.awt.List;
-import java.util.ArrayList;
 
 /**
  *
  * @author alumno
  */
 public class Venta {
-    String nombreCliente, localidad,procesador, memoria, discoDuro, monitor;
-   // List<String> listaOpciones;
+    private String nombreCliente, localidad,procesador, memoria, discoDuro, monitor;
+    private List listaOpciones;
     
-    public Venta(String nombre,String localidad,String procesador,String memoria,String discoDuro,String monitor, ArrayList<String> opcion){
+    public Venta(String nombre,String localidad,String procesador,String memoria,String discoDuro,String monitor, List opcion){
         this.nombreCliente = nombre;
         this.localidad = localidad;
         this.procesador = procesador;
         this.memoria = memoria;
         this.discoDuro = discoDuro;
-       // listaOpciones = opcion;
+        this.listaOpciones = opcion;
     }
     
     String getNombre(){

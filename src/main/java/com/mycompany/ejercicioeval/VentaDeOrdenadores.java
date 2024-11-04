@@ -4,11 +4,9 @@
  */
 package com.mycompany.ejercicioeval;
 
-import java.awt.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-
+import java.awt.List;
 import java.util.Vector;
 
 /**
@@ -17,21 +15,19 @@ import java.util.Vector;
  */
 public class VentaDeOrdenadores extends javax.swing.JFrame {
 
-    Vector<String> vector;
-
+    
+   public Vector <Venta> vector = new Vector<>();
+   public Vector v = new Vector();
     /**
      * Creates new form VentaDeOrdenadores
      */
     public VentaDeOrdenadores() {
         initComponents();
         this.setLocationRelativeTo(null);
-        vector = new Vector<>();
         deshabilitaBotones();
-
         textNombre.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-
                 if (e.getKeyCode() == KeyEvent.VK_ENTER && !(textNombre.getText().isEmpty())) {
                     habilitaBotones();
                     configuracionStandar();
@@ -141,7 +137,20 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         opcion1.setSelected(true);
         opcion2.setSelected(true);
     }
-
+    
+    private List opciones(){
+        List listaOpciones = new List();
+        if (this.opcion1.isSelected()) {
+            listaOpciones.add(opcion1.getText());
+        } else if(this.opcion2.isSelected()){
+            listaOpciones.add(opcion2.getText());
+        } else if (this.opcion3.isSelected()) {
+            listaOpciones.add(opcion3.getText());
+        } else if(this.opcion4.isSelected()){
+        listaOpciones.add(this.opcion4.getText());
+        }
+        return listaOpciones;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,7 +175,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        ListaClientes = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
         procesador1 = new javax.swing.JRadioButton();
         procesador2 = new javax.swing.JRadioButton();
@@ -225,8 +234,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
         jLabel8.setText("Disco Duro");
 
-        jScrollPane2.setViewportView(jList2);
-        jList2.getAccessibleContext().setAccessibleParent(textNombre);
+        jScrollPane2.setViewportView(ListaClientes);
+        ListaClientes.getAccessibleContext().setAccessibleParent(textNombre);
 
         jLabel9.setText("Opciones");
 
@@ -645,13 +654,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
-        
-        ArrayList<String> listaOpciones = null;
-         Venta v;
-        v = new Venta(textNombre.getText(),boxLocalidad.toString(),GrupoProcesador.getSelection().toString(),GrupoMemoria.getSelection().toString(), GrupoDiscoDuro.getSelection().toString(), GrupoMonitor.getSelection().toString(), listaOpciones);
-         vector.addElement(v.getNombre());
-         jList2.setListData(vector);
-         jScrollPane2.getViewport().setView(jList2);
+        Venta venta = new Venta(textNombre.getText(),boxLocalidad.toString(),GrupoProcesador.getSelection().toString(),GrupoMemoria.getSelection().toString(), GrupoDiscoDuro.getSelection().toString(), GrupoMonitor.getSelection().toString(), opciones());
+        vector.add(venta);
+        v.addElement(textNombre.getText());
+        ListaClientes.setListData(v);
+         jScrollPane2.getViewport().setView(ListaClientes);
+         textNombre.setText("");
     }//GEN-LAST:event_bAñadirActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
@@ -717,6 +725,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.ButtonGroup GrupoMemoria;
     private javax.swing.ButtonGroup GrupoMonitor;
     private javax.swing.ButtonGroup GrupoProcesador;
+    private javax.swing.JList<String> ListaClientes;
     private javax.swing.JButton bAñadir;
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bEliminar;
@@ -736,7 +745,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton memoria1;
     private javax.swing.JRadioButton memoria2;
