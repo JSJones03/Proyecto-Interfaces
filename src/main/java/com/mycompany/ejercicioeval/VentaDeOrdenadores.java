@@ -7,10 +7,8 @@ package com.mycompany.ejercicioeval;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
-import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,12 +37,20 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                     bBuscar.setEnabled(true);
                 }
             }
-            
         });
+
+        ListaClientes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            @Override
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                if (!evt.getValueIsAdjusting()) {
+                    bEliminar.setEnabled(!ListaClientes.isSelectionEmpty());
+                }
+            }
+        });
+
         activarActionCommand();
     }
 
-    
     private void habilitaBotones() {
         boxLocalidad.setEnabled(true);
         habilitaProcesador();
@@ -186,11 +192,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
     }
 
-    private void eliminaCliente(){
+    private void eliminaCliente() {
         if (jScrollPane2.isEnabled()) {
             bEliminar.setEnabled(true);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -738,14 +745,14 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             int cont = 0;
 
             while (!salir && cont < listaClientesIguales.size()) {
-                salir = JOptionPane.showConfirmDialog(null, listaClientesIguales.get(cont) + "\n\n¿Desea ver más ventas del cliente?", "Cliente:" + textNombre.getText(),HEIGHT) == JOptionPane.CANCEL_OPTION;
+                salir = JOptionPane.showConfirmDialog(null, listaClientesIguales.get(cont) + "\n\n¿Desea ver más ventas del cliente?", "Cliente:" + textNombre.getText(), HEIGHT) == JOptionPane.CANCEL_OPTION;
                 cont++;
                 if (cont == listaClientesIguales.size()) {
                     JOptionPane.showMessageDialog(null, "Se han mostrado todas las ventas de " + textNombre.getText());
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null,"Cliente no registrado.","Cliente",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cliente no registrado.", "Cliente", JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bBuscarActionPerformed
