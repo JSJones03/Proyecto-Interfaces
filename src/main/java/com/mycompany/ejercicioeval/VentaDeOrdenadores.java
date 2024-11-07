@@ -150,6 +150,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         discoDuro4.setSelected(true);
         opcion1.setSelected(true);
         opcion2.setSelected(true);
+        opcion3.setSelected(false);
+        opcion4.setSelected(false);
     }
 
     private List<String> opciones() {
@@ -198,8 +200,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                 vector.remove(venta);
             }
         }
-        jScrollPane2.getViewport().setView(ListaClientes);
-        textNombre.setText("");
+        actualizarListaClientes(); 
     }
 
     /**
@@ -251,7 +252,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         bAñadir = new javax.swing.JButton();
         bBuscar = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        bCancelar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -265,7 +266,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
         jLabel4.setText("Procesador");
 
-        boxLocalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxLocalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Villalba", "Alpedrete", "Galapagar", "Guadarrama", "Moralzarzal" }));
         boxLocalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxLocalidadActionPerformed(evt);
@@ -458,10 +459,10 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Cancelar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bCancelarActionPerformed(evt);
             }
         });
 
@@ -541,7 +542,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton4)
+                                    .addComponent(bCancelar)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
@@ -622,7 +623,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addComponent(bBuscar)
                         .addComponent(bEliminar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(bCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)))
                 .addGap(10, 10, 10))
@@ -724,26 +725,40 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            eliminaCliente();
-            actualizarListaClientes();
+            eliminaCliente();   
+            
             JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente.");
         } else {
             JOptionPane.showMessageDialog(this, "Operación cancelada");
         }
-       
+ 
     }//GEN-LAST:event_bEliminarActionPerformed
     private void actualizarListaClientes() {
         v.clear();
-        vector.clear();
         for (Venta venta : vector) {
             v.addElement(venta.getNombre());
         }
         ListaClientes.setListData(v); 
         jScrollPane2.setViewportView(ListaClientes);  
+        textNombre.setText("");
     }
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        textNombre.setText("");
+        deshabilitaBotones();
+        textNombre.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && !(textNombre.getText().isEmpty())) {
+                    habilitaBotones();
+                    configuracionStandar();
+                    bAñadir.setEnabled(true);
+                    bBuscar.setEnabled(true);
+                }
+            }
+        });
+        
+    }//GEN-LAST:event_bCancelarActionPerformed
 
     private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
         // TODO add your handling code here:
@@ -825,13 +840,13 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JList<String> ListaClientes;
     private javax.swing.JButton bAñadir;
     private javax.swing.JButton bBuscar;
+    private javax.swing.JButton bCancelar;
     private javax.swing.JButton bEliminar;
     private javax.swing.JComboBox<String> boxLocalidad;
     private javax.swing.JRadioButton discoDuro1;
     private javax.swing.JRadioButton discoDuro2;
     private javax.swing.JRadioButton discoDuro3;
     private javax.swing.JRadioButton discoDuro4;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
