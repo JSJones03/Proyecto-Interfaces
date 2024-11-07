@@ -32,6 +32,63 @@ public class Venta {
         return this.nombreCliente;
     }
 
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getProcesador() {
+        return procesador;
+    }
+
+    public void setProcesador(String procesador) {
+        this.procesador = procesador;
+    }
+
+    public String getMemoria() {
+        return memoria;
+    }
+
+    public void setMemoria(String memoria) {
+        this.memoria = memoria;
+    }
+
+    public String getDiscoDuro() {
+        return discoDuro;
+    }
+
+    public void setDiscoDuro(String discoDuro) {
+        this.discoDuro = discoDuro;
+    }
+
+    public String getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(String monitor) {
+        this.monitor = monitor;
+    }
+
+    public List<String> getListaOpciones() {
+        return listaOpciones;
+    }
+
+    public void setListaOpciones(List<String> listaOpciones) {
+        this.listaOpciones = listaOpciones;
+    }
+    
+
     @Override
     public String toString() {
         return "Venta:\n localidad=" + this.localidad + "\n procesador=" + this.procesador + "\n memoria=" + this.memoria + "\n discoDuro=" + this.discoDuro + "\n monitor=" + monitor + "\n listaOpciones=" + listaOpciones.toString();

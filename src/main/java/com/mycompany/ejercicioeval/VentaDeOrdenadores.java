@@ -7,9 +7,11 @@ package com.mycompany.ejercicioeval;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
-
+import java.util.stream.Stream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +19,9 @@ import java.util.Vector;
  */
 public class VentaDeOrdenadores extends javax.swing.JFrame {
 
-    
-   public Vector <Venta> vector = new Vector<>();
-   public Vector v = new Vector();
+    public Vector<Venta> vector = new Vector<>();
+    public Vector v = new Vector();
+
     /**
      * Creates new form VentaDeOrdenadores
      */
@@ -37,9 +39,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                     bBuscar.setEnabled(true);
                 }
             }
+            
         });
+        activarActionCommand();
     }
 
+    
     private void habilitaBotones() {
         boxLocalidad.setEnabled(true);
         habilitaProcesador();
@@ -138,24 +143,53 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         discoDuro4.setSelected(true);
         opcion1.setSelected(true);
         opcion2.setSelected(true);
-        }
-    
-    private List<String> opciones(){
+    }
+
+    private List<String> opciones() {
         List<String> listaOpciones;
-       listaOpciones = new ArrayList<>();
+        listaOpciones = new ArrayList<>();
         if (this.opcion1.isSelected()) {
             listaOpciones.add(opcion1.getText());
-        } 
-        if(this.opcion2.isSelected()){
+        }
+        if (this.opcion2.isSelected()) {
             listaOpciones.add(opcion2.getText());
         }
         if (this.opcion3.isSelected()) {
             listaOpciones.add(opcion3.getText());
         }
-        if(this.opcion4.isSelected()){
-        listaOpciones.add(this.opcion4.getText());
+        if (this.opcion4.isSelected()) {
+            listaOpciones.add(this.opcion4.getText());
         }
         return listaOpciones;
+    }
+
+    private void activarActionCommand() {
+        procesador1.setActionCommand(procesador1.getText());
+        procesador2.setActionCommand(procesador2.getText());
+        procesador1.setActionCommand(procesador3.getText());
+        procesador1.setActionCommand(procesador4.getText());
+
+        memoria1.setActionCommand(memoria1.getText());
+        memoria2.setActionCommand(memoria2.getText());
+        memoria3.setActionCommand(memoria3.getText());
+        memoria4.setActionCommand(memoria4.getText());
+
+        monitor1.setActionCommand(monitor1.getText());
+        monitor2.setActionCommand(monitor2.getText());
+        monitor3.setActionCommand(monitor3.getText());
+        monitor4.setActionCommand(monitor4.getText());
+
+        discoDuro1.setActionCommand(discoDuro1.getText());
+        discoDuro2.setActionCommand(discoDuro2.getText());
+        discoDuro3.setActionCommand(discoDuro3.getText());
+        discoDuro4.setActionCommand(discoDuro4.getText());
+
+    }
+
+    private void eliminaCliente(){
+        if (jScrollPane2.isEnabled()) {
+            bEliminar.setEnabled(true);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,6 +313,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
         GrupoMemoria.add(memoria1);
         memoria1.setText("128 Mb");
+        memoria1.setToolTipText("");
         memoria1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 memoria1ActionPerformed(evt);
@@ -660,12 +695,14 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
-        Venta venta = new Venta(textNombre.getText(),boxLocalidad.getSelectedItem().toString(),GrupoProcesador.getSelection().getActionCommand(),GrupoMemoria.getSelection().toString(), GrupoDiscoDuro.getSelection().toString(), GrupoMonitor.getSelection().getActionCommand(), opciones());
+
+        Venta venta = new Venta(textNombre.getText(), boxLocalidad.getSelectedItem().toString(), GrupoProcesador.getSelection().getActionCommand(), GrupoMemoria.getSelection().getActionCommand(), GrupoDiscoDuro.getSelection().getActionCommand(), GrupoMonitor.getSelection().getActionCommand(), opciones());
+        //venta.setProcesador(procesador);
         vector.add(venta);
         v.addElement(textNombre.getText());
         ListaClientes.setListData(v);
-         jScrollPane2.getViewport().setView(ListaClientes);
-         textNombre.setText("");
+        jScrollPane2.getViewport().setView(ListaClientes);
+        textNombre.setText("");
     }//GEN-LAST:event_bAñadirActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
@@ -688,12 +725,29 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
+        //1 cuentaNombre();
+        Vector<Venta> listaClientesIguales = new Vector();
         for (Venta venta : vector) {
             if (textNombre.getText().equals(venta.getNombre())) {
-                javax.swing.JOptionPane.showConfirmDialog(null, "Cliente : " + textNombre.getText() + "\n"+venta.toString(), "Prueba", javax.swing.JOptionPane.YES_OPTION);
+                listaClientesIguales.add(venta);
             }
         }
-     
+
+        boolean salir = false;
+        if (!(listaClientesIguales.isEmpty())) {
+            int cont = 0;
+
+            while (!salir && cont < listaClientesIguales.size()) {
+                salir = JOptionPane.showConfirmDialog(null, listaClientesIguales.get(cont) + "\n\n¿Desea ver más ventas del cliente?", "Cliente:" + textNombre.getText(),HEIGHT) == JOptionPane.CANCEL_OPTION;
+                cont++;
+                if (cont == listaClientesIguales.size()) {
+                    JOptionPane.showMessageDialog(null, "Se han mostrado todas las ventas de " + textNombre.getText());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Cliente no registrado.","Cliente",JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_bBuscarActionPerformed
 
     /**
