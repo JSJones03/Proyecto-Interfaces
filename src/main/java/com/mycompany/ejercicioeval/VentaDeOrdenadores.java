@@ -6,8 +6,10 @@ package com.mycompany.ejercicioeval;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.List;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+
 
 /**
  *
@@ -136,17 +138,21 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         discoDuro4.setSelected(true);
         opcion1.setSelected(true);
         opcion2.setSelected(true);
-    }
+        }
     
-    private List opciones(){
-        List listaOpciones = new List();
+    private List<String> opciones(){
+        List<String> listaOpciones;
+       listaOpciones = new ArrayList<>();
         if (this.opcion1.isSelected()) {
             listaOpciones.add(opcion1.getText());
-        } else if(this.opcion2.isSelected()){
+        } 
+        if(this.opcion2.isSelected()){
             listaOpciones.add(opcion2.getText());
-        } else if (this.opcion3.isSelected()) {
+        }
+        if (this.opcion3.isSelected()) {
             listaOpciones.add(opcion3.getText());
-        } else if(this.opcion4.isSelected()){
+        }
+        if(this.opcion4.isSelected()){
         listaOpciones.add(this.opcion4.getText());
         }
         return listaOpciones;
@@ -654,7 +660,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
-        Venta venta = new Venta(textNombre.getText(),boxLocalidad.toString(),GrupoProcesador.getSelection().toString(),GrupoMemoria.getSelection().toString(), GrupoDiscoDuro.getSelection().toString(), GrupoMonitor.getSelection().toString(), opciones());
+        Venta venta = new Venta(textNombre.getText(),boxLocalidad.getSelectedItem().toString(),GrupoProcesador.getSelection().getActionCommand(),GrupoMemoria.getSelection().toString(), GrupoDiscoDuro.getSelection().toString(), GrupoMonitor.getSelection().getActionCommand(), opciones());
         vector.add(venta);
         v.addElement(textNombre.getText());
         ListaClientes.setListData(v);
@@ -682,6 +688,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
+        for (Venta venta : vector) {
+            if (textNombre.getText().equals(venta.getNombre())) {
+                javax.swing.JOptionPane.showConfirmDialog(null, "Cliente : " + textNombre.getText() + "\n"+venta.toString(), "Prueba", javax.swing.JOptionPane.YES_OPTION);
+            }
+        }
+     
     }//GEN-LAST:event_bBuscarActionPerformed
 
     /**

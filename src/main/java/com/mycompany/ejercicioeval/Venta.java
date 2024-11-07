@@ -4,28 +4,37 @@
  */
 package com.mycompany.ejercicioeval;
 
-
-import java.awt.List;
+import java.util.List;
 
 /**
  *
  * @author alumno
  */
 public class Venta {
-    private String nombreCliente, localidad,procesador, memoria, discoDuro, monitor;
-    private List listaOpciones;
+
+    private String nombreCliente = null, localidad = null, procesador = null, memoria = null, discoDuro = null, monitor = null;
+    private List<String> listaOpciones = null;
     
-    public Venta(String nombre,String localidad,String procesador,String memoria,String discoDuro,String monitor, List opcion){
+    public Venta(){
+    };
+
+    public Venta(String nombre, String localidad, String procesador, String memoria, String discoDuro, String monitor, List opcion) {
         this.nombreCliente = nombre;
         this.localidad = localidad;
         this.procesador = procesador;
         this.memoria = memoria;
         this.discoDuro = discoDuro;
+        this.monitor = monitor;
         this.listaOpciones = opcion;
     }
-    
-    String getNombre(){
-        return this.nombreCliente;        
+
+    String getNombre() {
+        return this.nombreCliente;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Venta:\n localidad=" + this.localidad + "\n procesador=" + this.procesador + "\n memoria=" + this.memoria + "\n discoDuro=" + this.discoDuro + "\n monitor=" + monitor + "\n listaOpciones=" + listaOpciones.toString();
+    }
+
 }
