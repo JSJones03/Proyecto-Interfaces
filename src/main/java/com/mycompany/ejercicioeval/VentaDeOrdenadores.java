@@ -44,7 +44,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 if (!evt.getValueIsAdjusting()) {
                     bEliminar.setEnabled(!ListaClientes.isSelectionEmpty());
-
                 }
             }
         });
@@ -175,8 +174,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void activarActionCommand() {
         procesador1.setActionCommand(procesador1.getText());
         procesador2.setActionCommand(procesador2.getText());
-        procesador1.setActionCommand(procesador3.getText());
-        procesador1.setActionCommand(procesador4.getText());
+        procesador3.setActionCommand(procesador3.getText());
+        procesador4.setActionCommand(procesador4.getText());
 
         memoria1.setActionCommand(memoria1.getText());
         memoria2.setActionCommand(memoria2.getText());
@@ -194,12 +193,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         discoDuro4.setActionCommand(discoDuro4.getText());
     }
 
-    private void eliminaCliente() {
-        for (Venta venta : vector) {
-            if (venta.getNombre().equals(textNombre.getText())) {
-                vector.remove(venta);
-            }
-        }
+    private void eliminaCliente(int indice) {
+        
+                vector.remove(indice);
+                
+        //ListaClientes.setListData(vector); 
+                //ListaClientes.updateUI();
         actualizarListaClientes(); 
     }
 
@@ -719,13 +718,15 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
+        
+
         int confirmacion = JOptionPane.showConfirmDialog(this,
                 "¿Estás seguro de que deseas eliminar el cliente seleccionado?",
                 "Confirmación de Eliminación",
                 JOptionPane.YES_NO_OPTION);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            eliminaCliente();   
+            eliminaCliente(ListaClientes.getSelectedIndex());   
             
             JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente.");
         } else {
