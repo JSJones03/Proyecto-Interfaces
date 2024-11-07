@@ -44,6 +44,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 if (!evt.getValueIsAdjusting()) {
                     bEliminar.setEnabled(!ListaClientes.isSelectionEmpty());
+
                 }
             }
         });
@@ -189,13 +190,16 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         discoDuro2.setActionCommand(discoDuro2.getText());
         discoDuro3.setActionCommand(discoDuro3.getText());
         discoDuro4.setActionCommand(discoDuro4.getText());
-
     }
 
     private void eliminaCliente() {
-        if (jScrollPane2.isEnabled()) {
-            bEliminar.setEnabled(true);
+        for (Venta venta : vector) {
+            if (venta.getNombre().equals(textNombre.getText())) {
+                vector.remove(venta);
+            }
         }
+        jScrollPane2.getViewport().setView(ListaClientes);
+        textNombre.setText("");
     }
 
     /**
@@ -702,7 +706,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
-
         Venta venta = new Venta(textNombre.getText(), boxLocalidad.getSelectedItem().toString(), GrupoProcesador.getSelection().getActionCommand(), GrupoMemoria.getSelection().getActionCommand(), GrupoDiscoDuro.getSelection().getActionCommand(), GrupoMonitor.getSelection().getActionCommand(), opciones());
         //venta.setProcesador(procesador);
         vector.add(venta);
@@ -715,14 +718,36 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
-    }//GEN-LAST:event_bEliminarActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que deseas eliminar el cliente seleccionado?",
+                "Confirmación de Eliminación",
+                JOptionPane.YES_NO_OPTION);
 
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            eliminaCliente();
+            actualizarListaClientes();
+            JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Operación cancelada");
+        }
+       
+    }//GEN-LAST:event_bEliminarActionPerformed
+    private void actualizarListaClientes() {
+        v.clear();
+        vector.clear();
+        for (Venta venta : vector) {
+            v.addElement(venta.getNombre());
+        }
+        ListaClientes.setListData(v); 
+        jScrollPane2.setViewportView(ListaClientes);  
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_textNombreActionPerformed
 
     private void boxLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLocalidadActionPerformed
@@ -754,7 +779,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Cliente no registrado.", "Cliente", JOptionPane.WARNING_MESSAGE);
         }
-
     }//GEN-LAST:event_bBuscarActionPerformed
 
     /**
