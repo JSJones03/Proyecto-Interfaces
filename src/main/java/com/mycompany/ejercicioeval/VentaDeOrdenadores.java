@@ -37,6 +37,23 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                     bBuscar.setEnabled(true);
                 }
             }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (textNombre.getText().length() >= 15) {
+                    e.consume();
+                }
+                int key = e.getKeyChar();
+
+                boolean mayusculas = key >= 65 && key <= 90;
+                boolean minusculas = key >= 97 && key <= 122;
+                boolean espacio = key == 32;
+
+                if (!(minusculas || mayusculas || espacio)) {
+                    e.consume();
+                }
+            }
+
         });
 
         ListaClientes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -194,12 +211,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     }
 
     private void eliminaCliente(int indice) {
-        
-                vector.remove(indice);
-                
+
+        vector.remove(indice);
+
         //ListaClientes.setListData(vector); 
-                //ListaClientes.updateUI();
-        actualizarListaClientes(); 
+        //ListaClientes.updateUI();
+        actualizarListaClientes();
     }
 
     /**
@@ -272,10 +289,15 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         });
 
-        textNombre.setPreferredSize(new java.awt.Dimension(120, 22));
+        textNombre.setMinimumSize(new java.awt.Dimension(150, 22));
         textNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNombreActionPerformed(evt);
+            }
+        });
+        textNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNombreKeyTyped(evt);
             }
         });
 
@@ -466,6 +488,11 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         });
 
         jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -484,11 +511,14 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(165, 165, 165)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -718,7 +748,6 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         // TODO add your handling code here:
         deshabilitaBotones();
-        
 
         int confirmacion = JOptionPane.showConfirmDialog(this,
                 "¿Estás seguro de que deseas eliminar el cliente seleccionado?",
@@ -726,21 +755,21 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            eliminaCliente(ListaClientes.getSelectedIndex());   
-            
+            eliminaCliente(ListaClientes.getSelectedIndex());
+
             JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente.");
         } else {
             JOptionPane.showMessageDialog(this, "Operación cancelada");
         }
- 
+
     }//GEN-LAST:event_bEliminarActionPerformed
     private void actualizarListaClientes() {
         v.clear();
         for (Venta venta : vector) {
             v.addElement(venta.getNombre());
         }
-        ListaClientes.setListData(v); 
-        jScrollPane2.setViewportView(ListaClientes);  
+        ListaClientes.setListData(v);
+        jScrollPane2.setViewportView(ListaClientes);
         textNombre.setText("");
     }
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
@@ -758,7 +787,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                 }
             }
         });
-        
+
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
@@ -796,6 +825,15 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cliente no registrado.", "Cliente", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void textNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreKeyTyped
 
     /**
      * @param args the command line arguments
