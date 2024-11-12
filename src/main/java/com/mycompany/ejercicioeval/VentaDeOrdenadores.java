@@ -6,9 +6,16 @@ package com.mycompany.ejercicioeval;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -270,6 +277,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         bEliminar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        bMostrarVentas = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -494,6 +503,21 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         });
 
+        bMostrarVentas.setText("Mostrar ventas");
+        bMostrarVentas.setToolTipText("");
+        bMostrarVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMostrarVentasActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Guardar ventas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -558,22 +582,28 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(bBuscar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(bEliminar)))))
+                                        .addComponent(bEliminar)))
+                                .addGap(34, 34, 34)
+                                .addComponent(bMostrarVentas)))
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
+                                .addGap(92, 92, 92)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(opcion1)
                                     .addComponent(opcion2)
                                     .addComponent(opcion3)
-                                    .addComponent(opcion4)))
+                                    .addComponent(opcion4))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bCancelar)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                                .addComponent(bCancelar)))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -652,7 +682,10 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                         .addComponent(bBuscar)
                         .addComponent(bEliminar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bCancelar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bCancelar)
+                            .addComponent(jButton2)
+                            .addComponent(bMostrarVentas))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)))
                 .addGap(10, 10, 10))
@@ -835,6 +868,37 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNombreKeyTyped
 
+    private void bMostrarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarVentasActionPerformed
+        // TODO add your handling code here:
+        //Fichero de texto
+        File ficheroTexto = new File("clientesText.txt");
+        
+        
+        
+        //Fichero Binario
+        File fichero = new File("clientes.dat");
+        try {
+            FileOutputStream fos = new FileOutputStream(fichero, true);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (Venta venta : vector) {
+                oos.writeObject(venta);
+            }
+            oos.close();
+            fos.close();
+            
+        jScrollPane2.setViewportView(null);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_bMostrarVentasActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -881,11 +945,13 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bEliminar;
+    private javax.swing.JButton bMostrarVentas;
     private javax.swing.JComboBox<String> boxLocalidad;
     private javax.swing.JRadioButton discoDuro1;
     private javax.swing.JRadioButton discoDuro2;
     private javax.swing.JRadioButton discoDuro3;
     private javax.swing.JRadioButton discoDuro4;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

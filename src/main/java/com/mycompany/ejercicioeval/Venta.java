@@ -4,13 +4,14 @@
  */
 package com.mycompany.ejercicioeval;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author alumno
  */
-public class Venta {
+public class Venta implements Serializable{
 
     private String nombreCliente = null, localidad = null, procesador = null, memoria = null, discoDuro = null, monitor = null;
     private List<String> listaOpciones = null;
