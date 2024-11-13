@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -872,13 +873,23 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Fichero de texto
         File ficheroTexto = new File("clientesText.txt");
-        
+        try {
+            PrintWriter pw = new PrintWriter(ficheroTexto);
+            
+            for (Venta venta : vector) {
+                pw.println(venta);
+            }
+            pw.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         //Fichero Binario
         File fichero = new File("clientes.dat");
         try {
-            FileOutputStream fos = new FileOutputStream(fichero, true);
+            FileOutputStream fos = new FileOutputStream(fichero);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             for (Venta venta : vector) {
                 oos.writeObject(venta);

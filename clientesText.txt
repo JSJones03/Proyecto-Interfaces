@@ -1,0 +1,21 @@
+Venta:
+ localidad=Villalba
+ procesador=P4 3.2 Gb
+ memoria=1024 Mb
+ discoDuro=200 Gb
+ monitor=TFT 17"
+ listaOpciones=[Grabadora DVD, Wifi]
+Venta:
+ localidad=Galapagar
+ procesador=P4 3.2 Gb
+ memoria=256 Mb
+ discoDuro=200 Gb
+ monitor=17º
+ listaOpciones=[Grabadora DVD, Wifi, Sintonizador TV, Backup/Restore]
+Venta:
+ localidad=Galapagar
+ procesador=P4 3.0 Gb
+ memoria=256 Mb
+ discoDuro=16 Gb
+ monitor=15º
+ listaOpciones=[Grabadora DVD]

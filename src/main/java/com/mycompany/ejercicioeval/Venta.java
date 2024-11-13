@@ -92,7 +92,7 @@ public class Venta implements Serializable{
 
     @Override
     public String toString() {
-        return "Venta:\n localidad=" + this.localidad + "\n procesador=" + this.procesador + "\n memoria=" + this.memoria + "\n discoDuro=" + this.discoDuro + "\n monitor=" + monitor + "\n listaOpciones=" + listaOpciones.toString();
+        return "Venta:\nNombre=" + this.nombreCliente + "\nlocalidad" + this.localidad + "\n procesador=" + this.procesador + "\n memoria=" + this.memoria + "\n discoDuro=" + this.discoDuro + "\n monitor=" + monitor + "\n listaOpciones=" + listaOpciones.toString();
     }
 
 }
