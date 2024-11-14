@@ -7,9 +7,11 @@ package com.mycompany.ejercicioeval;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -871,7 +873,31 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
     private void bMostrarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarVentasActionPerformed
         // TODO add your handling code here:
-
+        
+         File fichero = new File("clientes.dat");
+        		FileInputStream fis;
+                        ObjectInputStream ois;
+		try {
+			fis = new FileInputStream(fichero);
+                        ois = new ObjectInputStream(fis);
+			while (fis.available()>0) {
+				Venta venta = (Venta) ois.readObject();
+                                vector.add(venta);
+                                v.addElement(venta.getNombre());
+                                ListaClientes.setListData(v);
+                                jScrollPane2.getViewport().setView(ListaClientes);
+			}
+                        ois.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_bMostrarVentasActionPerformed
 
     private void bGuardarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarVentasActionPerformed
