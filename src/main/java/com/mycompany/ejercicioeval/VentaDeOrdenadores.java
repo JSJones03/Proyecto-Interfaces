@@ -279,7 +279,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         bCancelar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         bMostrarVentas = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bGuardarVentas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -512,10 +512,10 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Guardar ventas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bGuardarVentas.setText("Guardar ventas");
+        bGuardarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bGuardarVentasActionPerformed(evt);
             }
         });
 
@@ -601,7 +601,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(bGuardarVentas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bCancelar)))))
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -685,7 +685,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bCancelar)
-                            .addComponent(jButton2)
+                            .addComponent(bGuardarVentas)
                             .addComponent(bMostrarVentas))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)))
@@ -871,7 +871,12 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
     private void bMostrarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarVentasActionPerformed
         // TODO add your handling code here:
-        //Fichero de texto
+
+    }//GEN-LAST:event_bMostrarVentasActionPerformed
+
+    private void bGuardarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarVentasActionPerformed
+        // TODO add your handling code here:
+                //Fichero de texto
         File ficheroTexto = new File("clientesText.txt");
         try {
             PrintWriter pw = new PrintWriter(ficheroTexto);
@@ -904,11 +909,7 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_bMostrarVentasActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bGuardarVentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -956,13 +957,13 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bEliminar;
+    private javax.swing.JButton bGuardarVentas;
     private javax.swing.JButton bMostrarVentas;
     private javax.swing.JComboBox<String> boxLocalidad;
     private javax.swing.JRadioButton discoDuro1;
     private javax.swing.JRadioButton discoDuro2;
     private javax.swing.JRadioButton discoDuro3;
     private javax.swing.JRadioButton discoDuro4;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
