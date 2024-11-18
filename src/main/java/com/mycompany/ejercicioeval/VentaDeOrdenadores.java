@@ -229,6 +229,87 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
         actualizarListaClientes();
     }
 
+    private void seleccionarBotones(Venta a) {
+        switch (a.getProcesador()) {
+            case "P4 3.0 Gb" ->
+                procesador1.setSelected(true);
+            case "P4 3.2 Gb" ->
+                procesador2.setSelected(true);
+            case "P4 Celeron" ->
+                procesador3.setSelected(true);
+            case "AMD 650" ->
+                procesador4.setSelected(true);
+            default -> {
+            }
+        }
+
+        switch (a.getMemoria()) {
+            case "128 Mb" ->
+                memoria1.setSelected(true);
+            case "256 Mb" ->
+                memoria2.setSelected(true);
+            case "512 Mb" ->
+                memoria3.setSelected(true);
+            case "1024 Mb" ->
+                memoria4.setSelected(true);
+            default -> {
+            }
+        }
+        switch (a.getMonitor()) {
+            case "15º" ->
+                monitor1.setSelected(true);
+            case "17º" ->
+                monitor2.setSelected(true);
+            case "TFT 15" ->
+                monitor3.setSelected(true);
+            case "TFT 17" ->
+                monitor4.setSelected(true);
+            default -> {
+            }
+        }
+        switch (a.getDiscoDuro()) {
+            case "16 Gb" ->
+                discoDuro1.setSelected(true);
+            case "80 Gb" ->
+                discoDuro2.setSelected(true);
+            case "120 Gb" -> 
+                discoDuro3.setSelected(true);
+            case "200 Gb" -> 
+                discoDuro4.setSelected(true);
+            default -> {
+            }
+        }
+
+        if (a.getListaOpciones().contains("Grabadora DVD")) {
+            opcion1.setSelected(true);
+        }
+        if (a.getListaOpciones().contains("Wifi")) {
+            opcion2.setSelected(true);
+        }
+        if (a.getListaOpciones().contains("Sintonizador TV")) {
+            opcion3.setSelected(true);
+        }
+        if (a.getListaOpciones().contains("Backup/Restore")) {
+            opcion4.setSelected(true);
+        }
+
+    }
+    private  void resetearBotones(){
+    deshabilitaProcesador();
+    deshabilitaMemoria();
+    deshabilitaMonitor();
+    deshabilitaDisco();
+    deshabilitaOpciones();
+    desmarcarOpciones();
+    }
+    
+    private void desmarcarOpciones(){
+        opcion1.setSelected(false);
+        opcion2.setSelected(false);
+        opcion3.setSelected(false);
+        opcion4.setSelected(false);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -837,7 +918,8 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
         // TODO add your handling code here:
-        deshabilitaBotones();
+        resetearBotones();
+        habilitaBotones();
         //1 cuentaNombre();
         Vector<Venta> listaClientesIguales = new Vector();
         for (Venta venta : vector) {
@@ -846,17 +928,40 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
         }
 
-        boolean salir = false;
+        // boolean salir = false;
         if (!(listaClientesIguales.isEmpty())) {
             int cont = 0;
 
-            while (!salir && cont < listaClientesIguales.size()) {
-                salir = JOptionPane.showConfirmDialog(null, listaClientesIguales.get(cont) + "\n\n¿Desea ver más ventas del cliente?", "Cliente:" + textNombre.getText(), HEIGHT) == JOptionPane.CANCEL_OPTION;
-                cont++;
-                if (cont == listaClientesIguales.size()) {
-                    JOptionPane.showMessageDialog(null, "Se han mostrado todas las ventas de " + textNombre.getText());
+            while (cont < listaClientesIguales.size()) {
+                
+                //   salir = JOptionPane.showConfirmDialog(null, listaClientesIguales.get(cont) + "\n\n¿Desea ver más ventas del cliente?", "Cliente:" + textNombre.getText(), HEIGHT) == JOptionPane.CANCEL_OPTION;
+                seleccionarBotones(listaClientesIguales.get(cont));
+                // Pausar y pedir confirmación para continuar con la siguiente venta
+                int respuesta = JOptionPane.showConfirmDialog(
+                        null,
+                        "¿Desea ver más ventas de este cliente?",
+                        "Confirmar",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    resetearBotones();
+                    desmarcarOpciones();
+                    
                 }
+                // Si el usuario selecciona "No", salir del bucle
+                if (respuesta == JOptionPane.NO_OPTION) {
+                    break;
+                }
+                
+                cont++;
             }
+            if (cont==listaClientesIguales.size()) {
+                 JOptionPane.showMessageDialog(null, "Se han mostrado todas las ventas de " + textNombre.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "No quiere ver mas ventas de " + textNombre.getText());
+            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Cliente no registrado.", "Cliente", JOptionPane.WARNING_MESSAGE);
         }
@@ -873,50 +978,50 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
 
     private void bMostrarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarVentasActionPerformed
         // TODO add your handling code here:
-        
-         File fichero = new File("clientes.dat");
-        		FileInputStream fis;
-                        ObjectInputStream ois;
-		try {
-			fis = new FileInputStream(fichero);
-                        ois = new ObjectInputStream(fis);
-			while (fis.available()>0) {
-				Venta venta = (Venta) ois.readObject();
-                                vector.add(venta);
-                                v.addElement(venta.getNombre());
-                                ListaClientes.setListData(v);
-                                jScrollPane2.getViewport().setView(ListaClientes);
-			}
-                        ois.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        vector.clear();
+        v.clear();
+        File fichero = new File("clientes.dat");
+        FileInputStream fis;
+        ObjectInputStream ois;
+        try {
+            fis = new FileInputStream(fichero);
+            ois = new ObjectInputStream(fis);
+            while (fis.available() > 0) {
+                Venta venta = (Venta) ois.readObject();
+                vector.add(venta);
+                v.addElement(venta.getNombre());
+                ListaClientes.setListData(v);
+                jScrollPane2.getViewport().setView(ListaClientes);
+            }
+            ois.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_bMostrarVentasActionPerformed
 
     private void bGuardarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarVentasActionPerformed
         // TODO add your handling code here:
-                //Fichero de texto
+        //Fichero de texto
         File ficheroTexto = new File("clientesText.txt");
         try {
             PrintWriter pw = new PrintWriter(ficheroTexto);
-            
+
             for (Venta venta : vector) {
                 pw.println(venta);
             }
             pw.close();
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         //Fichero Binario
         File fichero = new File("clientes.dat");
         try {
@@ -927,14 +1032,14 @@ public class VentaDeOrdenadores extends javax.swing.JFrame {
             }
             oos.close();
             fos.close();
-            
-        jScrollPane2.setViewportView(null);
+
+            jScrollPane2.setViewportView(null);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(VentaDeOrdenadores.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_bGuardarVentasActionPerformed
 
     /**
